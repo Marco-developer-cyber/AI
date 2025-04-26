@@ -1,0 +1,23 @@
+.scrollImage {
+    width: 100%;
+    height: 92vh;
+    object-fit: cover;
+}
+
+/* Part Footer,, */
+#footer {
+    height: 35vh;
+    background-color: black;
+}
+
+.footer-text {
+    position: relative;
+    top: 100px;
+}
+
+.example-2 {
+    position: relative;
+    top: 15vh;
+}
+
+/* End Footer,, */
