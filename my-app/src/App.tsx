@@ -1,21 +1,17 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import Header from './Components/header'
-import Scroll from './Components/scrollBar'
-import Cards from './Components/cards'
+import All from './All'
 import Ai from './Components/ai'
-import Footer from './Components/footer'
+import Header from './Components/header'
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Header />
-        <Scroll />
-          <Cards/>
+      <Header />
         <Routes>
+          <Route path='/' element={<All/>} />
             <Route path='/ai' element={<Ai />}></Route>
         </Routes>
-        <Footer />
       </BrowserRouter>
     </>
   )
