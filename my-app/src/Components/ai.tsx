@@ -1,6 +1,16 @@
 import "./Styles/ai.css";
 
-const Info = [
+import { useEffect, useRef } from 'react';
+
+type Service = {
+  name: string;
+  info: string;
+  img: string;
+  link: string;
+};
+
+// 🔁 Заменить это на реальный список данных
+const Info: Service[] = [
   {
     name: "Chat Gpt",
     img: "https://habrastorage.org/getpro/habr/upload_files/6de/ef1/890/6deef1890756d1d298e9fcec18ef2a61.jpg",
@@ -244,8 +254,6 @@ const Info = [
   },
 ];
 
-import { useEffect, useRef } from 'react';
-
 const Ai = () => {
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -279,7 +287,9 @@ const Ai = () => {
           <div className="col-md-6 col-lg-4 mb-4" key={index}>
             <div
               className="card ai-service-card"
-              ref={(el) => (cardsRef.current[index] = el)}
+              ref={(el) => {
+                cardsRef.current[index] = el;
+              }}
             >
               <div className="ai-service-img-container ai-service-img-overlay">
                 <img
@@ -311,3 +321,4 @@ const Ai = () => {
 };
 
 export default Ai;
+

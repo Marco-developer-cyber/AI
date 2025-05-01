@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Styles/footer.css'
+import './Styles/footer.css';
+
 const CyberFooter = () => {
   const [currentYear] = useState(new Date().getFullYear());
 
@@ -82,13 +83,17 @@ const CyberFooter = () => {
   );
 };
 
-// Иконки (можно заменить на реальные компоненты иконок)
-const EmailIcon = () => <span>✉️</span>;
-const PhoneIcon = () => <span>📱</span>;
-const LocationIcon = () => <span>📍</span>;
-const GitHubIcon = () => <span>🐙</span>;
-const TelegramIcon = () => <span>✈️</span>;
-const InstagramIcon = () => <span>📷</span>;
-const LinkedInIcon = () => <span>💼</span>;
+// Типы иконок с поддержкой className
+type IconProps = {
+  className?: string;
+};
+
+const EmailIcon = ({ className }: IconProps) => <span className={className}>✉️</span>;
+const PhoneIcon = ({ className }: IconProps) => <span className={className}>📱</span>;
+const LocationIcon = ({ className }: IconProps) => <span className={className}>📍</span>;
+const GitHubIcon = ({ className }: IconProps) => <span className={className}>🐙</span>;
+const TelegramIcon = ({ className }: IconProps) => <span className={className}>✈️</span>;
+const InstagramIcon = ({ className }: IconProps) => <span className={className}>📷</span>;
+const LinkedInIcon = ({ className }: IconProps) => <span className={className}>💼</span>;
 
 export default CyberFooter;
