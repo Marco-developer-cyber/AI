@@ -1,14 +1,14 @@
 import './App.css'
-import Scroll from './Components/scrollBar'
 import Cards from './Components/cards'
-import Footer from './Components/footer'
+import CyberFooter from './Components/footer'
+import CyberCarousel from './Components/scrollBar'
 function All() {
     return (
         <>
-            <Scroll />
+            <CyberCarousel/>
             <Cards />
 
-            <Footer />
+            <CyberFooter />
         </>
     )
 }

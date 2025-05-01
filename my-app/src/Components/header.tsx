@@ -1,31 +1,69 @@
-const Header = ()=> {
-    return (
-        <header id="header">
-            <nav className="navbar navbar-expand-lg bg-body-tertiary">
-                <div className="container">
-                    <a className="navbar-brand">Navbar</a>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarNav">
-                        <ul className="navbar-nav">
-                            <li className="nav-item">
-                                <a className="nav-link active" aria-current="page">Home</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link">Features</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link">Pricing</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link ">Disabled</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-    )
-}
-export default Header
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./Styles/header.css";
+const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  useEffect(() => {
+    // Эффект появления хедера при загрузке
+    const timer = setTimeout(() => {
+      setIsScrolled(true);
+      setTimeout(() => setIsScrolled(false), 1000);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+  return (
+    <header className={`cyber-header ${isScrolled ? "scrolled" : ""}`}>
+      <div className="container">
+        <div className="header-content">
+          <Link to="/" className="logo">
+            <span className="logo-glitch" data-text="CYBER_AI">
+              CYBER_AI
+            </span>
+            <span className="glitch-effect"></span>
+          </Link>
+
+          <button
+            className={`menu-toggle ${isMenuOpen ? "open" : ""}`}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Menu"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <nav className={`nav-links ${isMenuOpen ? "open" : ""}`}>
+            <Link to="/services" className="nav-link">
+              <span className="link-text">Услуги</span>
+              <span className="link-hover"></span>
+            </Link>
+            <Link to="/about" className="nav-link">
+              <span className="link-text">О нас</span>
+              <span className="link-hover"></span>
+            </Link>
+            <Link to="/contact" className="nav-link">
+              <span className="link-text">Контакты</span>
+              <span className="link-hover"></span>
+            </Link>
+          </nav>
+        </div>
+      </div>
+
+      {/* Анимированная полоса внизу хедера */}
+      <div className="header-line"></div>
+    </header>
+  );
+};
+
+export default Header;

@@ -1,60 +1,66 @@
 import { Link } from "react-router-dom";
-import '../App.css'
-
+import '../App.css';
+import './Styles/cards.css'
 const Cards = () => {
     return (
         <div className="container mt-5">
-            <div className="row rows-col-12 rows-col-md-6 rows-col-lg-4">
-                <div className="col">
-                    <div className="card">
-                        <img
-                            src="https://images8.alphacoders.com/112/1126614.jpg"
-                            className="card-img-top"
-                            alt="Senku"
-                        />
-                        <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">
-                                Some quick example text to build on the card title and make up the bulk of the card's content.
+            <div className="row">
+                <div className="col-md-6 col-lg-4 mb-4">
+                    <div className="cyber-card">
+                        <div className="cyber-img-container">
+                            <img
+                                src="https://images8.alphacoders.com/112/1126614.jpg"
+                                className="cyber-img"
+                                alt="Senku"
+                            />
+                        </div>
+                        <div className="cyber-card-body">
+                            <h5 className="cyber-title">Neon Genesis</h5>
+                            <p className="cyber-text">
+                                Immerse yourself in the digital future with cutting-edge technology.
                             </p>
-                            <Link to="/ai">
-                                <button className="btn btn-primary">AI</button>
+                            <Link to="/ai" className="cyber-link">
+                                <button className="cyber-btn">Enter Grid</button>
                             </Link>
                         </div>
                     </div>
                 </div>
-                <div className="col">
-                    <div className="card">
-                        <img
-                            src="https://images8.alphacoders.com/112/1126614.jpg"
-                            className="card-img-top"
-                            alt="Senku"
-                        />
-                        <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">
-                                Some quick example text to build on the card title and make up the bulk of the card's content.
+                <div className="col-md-6 col-lg-4 mb-4">
+                    <div className="cyber-card">
+                        <div className="cyber-img-container">
+                            <img
+                                src="https://images8.alphacoders.com/112/1126614.jpg"
+                                className="cyber-img"
+                                alt="Senku"
+                            />
+                        </div>
+                        <div className="cyber-card-body">
+                            <h5 className="cyber-title">Data Flow</h5>
+                            <p className="cyber-text">
+                                Feel the pulse of information streams in the neural network.
                             </p>
-                            <Link to="/ai">
-                                <button className="btn btn-primary">AI</button>
+                            <Link to="/ai" className="cyber-link">
+                                <button className="cyber-btn">Sync Now</button>
                             </Link>
                         </div>
                     </div>
                 </div>
-                <div className="col">
-                    <div className="card">
-                        <img
-                            src="https://images8.alphacoders.com/112/1126614.jpg"
-                            className="card-img-top"
-                            alt="Senku"
-                        />
-                        <div className="card-body">
-                            <h5 className="card-title">Card title</h5>
-                            <p className="card-text">
-                                Some quick example text to build on the card title and make up the bulk of the card's content.
+                <div className="col-md-6 col-lg-4 mb-4">
+                    <div className="cyber-card">
+                        <div className="cyber-img-container">
+                            <img
+                                src="https://images8.alphacoders.com/112/1126614.jpg"
+                                className="cyber-img"
+                                alt="Senku"
+                            />
+                        </div>
+                        <div className="cyber-card-body">
+                            <h5 className="cyber-title">Quantum Core</h5>
+                            <p className="cyber-text">
+                                Unleash the power of quantum computing in your projects.
                             </p>
-                            <Link to="/ai">
-                                <button className="btn btn-primary">AI</button>
+                            <Link to="/ai" className="cyber-link">
+                                <button className="cyber-btn">Activate</button>
                             </Link>
                         </div>
                     </div>
@@ -63,5 +69,6 @@ const Cards = () => {
         </div>
     );
 };
+
 
 export default Cards;

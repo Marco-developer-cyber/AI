@@ -1,98 +1,307 @@
+/* === Глобальные стили === */
+body {
+  background: radial-gradient(circle at center, #0A0410 0%, #040008 100%);
+  color: #E0F8FF;
+  font-family: 'Rajdhani', 'Arial', sans-serif;
+  overflow-x: hidden;
+}
+
+/* === Улучшенные стили карточек === */
 .ai-service-card {
-    height: 400px;
-    border: none;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    max-width: 350px;
-    margin: 20px auto;
+  height: 420px;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(10, 4, 16, 0.8);
+  box-shadow: 0 8px 32px rgba(0, 245, 255, 0.2);
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  max-width: 360px;
+  margin: 20px auto;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 245, 255, 0.4);
+  transform-style: preserve-3d;
 }
 
 .ai-service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(0, 245, 255, 0.4), 
+              0 0 80px rgba(0, 245, 255, 0.2);
+  border: 1px solid rgba(0, 245, 255, 0.6);
 }
 
+/* Голографический эффект */
+.ai-service-card::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(
+      135deg, 
+      rgba(0, 245, 255, 0.8) 0%, 
+      rgba(0, 245, 255, 0.5) 50%, 
+      rgba(0, 245, 255, 0.8) 100%
+  );
+  z-index: -2;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.8s;
+  animation: hologramPulse 4s infinite linear;
+}
+
+@keyframes hologramPulse {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.ai-service-card:hover::before {
+  opacity: 0.6;
+}
+
+/* Эффект сканирующей линии */
+.ai-service-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00F5FF, transparent);
+  opacity: 0;
+  animation: scanLine 3.5s infinite;
+}
+
+@keyframes scanLine {
+  0% { top: 0; opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 0.2; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.ai-service-card:hover::after {
+  opacity: 0.8;
+}
+
+/* === Стили изображений === */
 .ai-service-img-container {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
+  height: 220px;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  border-bottom: 1px solid rgba(0, 245, 255, 0.2);
 }
 
 .ai-service-img {
-    height: 200px;
-    width: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.8s ease;
+  filter: sepia(30%) hue-rotate(160deg) contrast(110%);
+  transform-origin: center;
 }
 
 .ai-service-card:hover .ai-service-img {
-    transform: scale(1.05);
+  transform: scale(1.08) rotate(-1deg);
+  filter: sepia(0%) hue-rotate(160deg) contrast(120%);
 }
 
-.ai-service-img-overlay::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 40%;
-    background: linear-gradient(to top, rgba(245, 247, 250, 0.9), transparent);
+/* Глитч-эффект */
+.ai-service-img-container:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      to bottom,
+      transparent 65%,
+      rgba(0, 245, 255, 0.3) 80%,
+      transparent 95%
+  );
+  animation: glitchEffect 0.8s infinite alternate;
+  z-index: 1;
+  mix-blend-mode: screen;
 }
 
+@keyframes glitchEffect {
+  0% { transform: translateX(0); opacity: 0; }
+  20% { transform: translateX(-5px); opacity: 0.3; }
+  40% { transform: translateX(5px); opacity: 0.6; }
+  60% { transform: translateX(-3px); opacity: 0.4; }
+  80% { transform: translateX(3px); opacity: 0.2; }
+  100% { transform: translateX(0); opacity: 0; }
+}
+
+/* === Стили контента === */
 .ai-service-body {
-    padding: 25px;
-    text-align: center;
+  padding: 25px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .ai-service-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: #2c3e50;
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  color: #00F5FF;
+  text-shadow: 0 0 12px rgba(0, 245, 255, 0.7);
+  letter-spacing: 1px;
+  position: relative;
+  display: inline-block;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.ai-service-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #00F5FF, transparent);
+  transform: scaleX(0);
+  transition: transform 0.6s ease;
+}
+
+.ai-service-card:hover .ai-service-title::after {
+  transform: scaleX(1);
 }
 
 .ai-service-description {
-    color: #7f8c8d;
-    margin-bottom: 20px;
-    font-size: 0.95rem;
+  color: #B8F2FF;
+  margin-bottom: 25px;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
+/* === Улучшенная кнопка === */
 .ai-service-btn {
-    background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
-    border: none;
-    border-radius: 50px;
-    padding: 10px 25px;
-    color: white;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(37, 117, 252, 0.3);
-    display: inline-block;
-    text-decoration: none;
+  background: transparent;
+  border: 2px solid #00F5FF;
+  color: #00F5FF;
+  padding: 12px 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.6s ease;
+  box-shadow: 0 0 10px rgba(0, 245, 255, 0.3);
+  z-index: 1;
+  font-size: 0.9rem;
+  font-family: 'Rajdhani', sans-serif;
 }
 
 .ai-service-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(37, 117, 252, 0.4);
-    color: white;
+  background: rgba(0, 245, 255, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+  letter-spacing: 2px;
 }
 
 .ai-service-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: 0.5s;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      90deg, 
+      transparent, 
+      rgba(255, 255, 255, 0.3), 
+      transparent
+  );
+  transition: 0.8s;
+  z-index: -1;
 }
 
 .ai-service-btn:hover::before {
-    left: 100%;
+  left: 100%;
 }
+
+/* Эффект частиц при наведении */
+.ai-service-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+      circle, 
+      rgba(0, 245, 255, 0.2) 0%, 
+      transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+
+.ai-service-btn:hover::after {
+  opacity: 1;
+  animation: particleExplosion 0.8s forwards;
+}
+
+@keyframes particleExplosion {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Сетка поверх изображения */
+.ai-service-img-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+      linear-gradient(90deg, rgba(0, 245, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(rgba(0, 245, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.ai-service-card {
+  transform: 
+      perspective(1000px)
+      rotateX(calc((var(--mouse-y, 0) - 50%) * -0.5deg))
+      rotateY(calc((var(--mouse-x, 0) - 50%) * 0.5deg));
+}
+/* .ai-service-card {
+  will-change: transform, opacity;
+} */
+
+/* Остальные стили остаются без изменений */
+/* Анимация появления */
+.ai-service-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.ai-service-card.animate-fade-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Оставьте все ваши hover-эффекты как есть */
+.ai-service-card:hover {
+  transform: translateY(-10px) !important;
+  /* остальные стили hover */
+}
+/* В ваш CSS */
+.ai-service-card:nth-child(1) { transition-delay: 0.1s; }
+.ai-service-card:nth-child(2) { transition-delay: 0.2s; }
+.ai-service-card:nth-child(3) { transition-delay: 0.3s; }
+/* и так далее по количеству карточек */
