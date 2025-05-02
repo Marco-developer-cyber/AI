@@ -29,7 +29,7 @@ const Cards = () => {
                     <div className="cyber-card">
                         <div className="cyber-img-container">
                             <img
-                                src="https://images8.alphacoders.com/112/1126614.jpg"
+                                src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/09/the_eminence_in_shadow-episode_06-figure_04.jpg"
                                 className="cyber-img"
                                 alt="Senku"
                             />
@@ -49,7 +49,7 @@ const Cards = () => {
                     <div className="cyber-card">
                         <div className="cyber-img-container">
                             <img
-                                src="https://images8.alphacoders.com/112/1126614.jpg"
+                                src="https://i.ytimg.com/vi/quLV7EhZdis/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGBwgWih_MA8=&rs=AOn4CLAF452r4A7gquluaNP7kSvupzDFXA"
                                 className="cyber-img"
                                 alt="Senku"
                             />

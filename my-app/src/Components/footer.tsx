@@ -43,7 +43,7 @@ const CyberFooter = () => {
             </li>
             <li className="cyber-contact-item">
               <LocationIcon className="cyber-contact-icon" />
-              Москва, Киберпространство
+              Хива, Киберпространство
             </li>
           </ul>
         </div>
@@ -52,16 +52,16 @@ const CyberFooter = () => {
         <div className="cyber-footer-section">
           <h4 className="cyber-footer-heading">Соцсети</h4>
           <div className="cyber-social-links">
-            <a href="#" className="cyber-social-link" aria-label="GitHub">
+            <a href="https://github.com/Marco-developer-cyber" className="cyber-social-link" aria-label="GitHub">
               <GitHubIcon className="cyber-social-icon" />
             </a>
             <a href="#" className="cyber-social-link" aria-label="Telegram">
               <TelegramIcon className="cyber-social-icon" />
             </a>
-            <a href="#" className="cyber-social-link" aria-label="Instagram">
+            <a href="https://www.instagram.com/marco._programmer/" className="cyber-social-link" aria-label="Instagram">
               <InstagramIcon className="cyber-social-icon" />
             </a>
-            <a href="#" className="cyber-social-link" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/muxammadali-ismoilov-ab814b358/" className="cyber-social-link" aria-label="LinkedIn">
               <LinkedInIcon className="cyber-social-icon" />
             </a>
           </div>
@@ -88,12 +88,12 @@ type IconProps = {
   className?: string;
 };
 
-const EmailIcon = ({ className }: IconProps) => <span className={className}>✉️</span>;
-const PhoneIcon = ({ className }: IconProps) => <span className={className}>📱</span>;
-const LocationIcon = ({ className }: IconProps) => <span className={className}>📍</span>;
-const GitHubIcon = ({ className }: IconProps) => <span className={className}>🐙</span>;
-const TelegramIcon = ({ className }: IconProps) => <span className={className}>✈️</span>;
-const InstagramIcon = ({ className }: IconProps) => <span className={className}>📷</span>;
-const LinkedInIcon = ({ className }: IconProps) => <span className={className}>💼</span>;
+const EmailIcon = ({ className }: IconProps) => <span className={className}><i className="fa-solid fa-envelope"></i></span>;
+const PhoneIcon = ({ className }: IconProps) => <span className={className}><i className="fa-solid fa-phone"></i></span>;
+const LocationIcon = ({ className }: IconProps) => <span className={className}><i className="fa-solid fa-location-dot"></i></span>;
+const GitHubIcon = ({ className }: IconProps) => <span className={className}><i className="fa-brands fa-github"></i></span>;
+const TelegramIcon = ({ className }: IconProps) => <span className={className}><i className="fa-brands fa-telegram"></i></span>;
+const InstagramIcon = ({ className }: IconProps) => <span className={className}><i className="fa-brands fa-instagram"></i></span>;
+const LinkedInIcon = ({ className }: IconProps) => <span className={className}><i className="fa-brands fa-linkedin"></i></span>;
 
 export default CyberFooter;

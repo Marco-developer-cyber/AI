@@ -20,19 +20,19 @@ const CyberCarousel = () => {
     {
       title: 'Искусственный Интеллект',
       description: 'Передовые технологии машинного обучения для вашего бизнеса',
-      image: 'https://example.com/ai-tech.jpg',
+      image: 'https://avatars.mds.yandex.net/i?id=5e4ec1938600e86de6c08b05eeb2ab0b_l-5246113-images-thumbs&n=13',
       color: '#00F5FF',
     },
     {
       title: 'Кибербезопасность',
       description: 'Защитите свои данные с нашими решениями',
-      image: 'https://example.com/cyber-sec.jpg',
+      image: 'https://i.ytimg.com/vi/Z0jKlTFiSMw/maxresdefault.jpg',
       color: '#C9184A',
     },
     {
       title: 'Веб Разработка',
       description: 'Современные веб-приложения с футуристичным дизайном',
-      image: 'https://example.com/web-dev.jpg',
+      image: 'https://i.pinimg.com/originals/68/07/a1/6807a1a41e32c0b7d4bd88c5cc95d003.jpg',
       color: '#B8F2FF',
     },
   ];
@@ -86,7 +86,7 @@ const CyberCarousel = () => {
 
   return (
     <div
-      className="cyber-carousel"
+      className="cyber-carousel mt-5"
       ref={carouselRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
