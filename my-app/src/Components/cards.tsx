@@ -39,7 +39,7 @@ const Cards = () => {
                             <p className="cyber-text">
                                 Feel the pulse of information streams in the neural network.
                             </p>
-                            <Link to="/ai" className="cyber-link">
+                            <Link to="/anime" className="cyber-link">
                                 <button className="cyber-btn">Sync Now</button>
                             </Link>
                         </div>
@@ -59,7 +59,7 @@ const Cards = () => {
                             <p className="cyber-text">
                                 Unleash the power of quantum computing in your projects.
                             </p>
-                            <Link to="/animatedScenes" className="cyber-link">
+                            <Link to="/" className="cyber-link">
                                 <button className="cyber-btn">Activate</button>
                             </Link>
                         </div>

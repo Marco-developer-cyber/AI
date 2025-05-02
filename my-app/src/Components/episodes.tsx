@@ -1,45 +1,70 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import gsap from "gsap";
+import { useSearchParams } from "react-router-dom";
+import { motion } from "framer-motion";
 import "./Styles/animatedScenes.css";
 
-const entities = [
-  {
-    name: "Jujutsu Kaisen",
-    description: "A dark fantasy where cursed energy becomes weaponized.",
-    rating: 4.8,
-    tags: ["Action", "Supernatural", "Dark Fantasy"],
-    date: "March 23, 2017",
-    background: "/Anime/Backgrounds/sukuna_t.png",
-    circle: "/Anime/PNG/Sukuna_t-pothe.png",
-    action: {
-      label: "Watch Now",
-      onClick: () => window.open("https://jut.su/jujutsu-kaisen/", "_blank"),
-    },
-  },
-  {
-    name: "Entity 2",
-    description: "A revolutionary tech breakthrough.",
-    rating: 3.8,
-    tags: ["AI", "Cyber", "Web3"],
-    date: "May 03, 2025",
-    background: "/images/background2.png",
-    circle: "/images/circle2.png",
-    action: {
-      label: "Explore",
-      onClick: () => alert("Entity 2 clicked!"),
-    },
-  },
-];
+const Menu: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
+  isOpen,
+  onClose,
+}) => {
+  if (!isOpen) return null;
+  return (
+    <motion.div
+      className="fixed inset-0 bg-black bg-opacity-95 flex flex-col justify-center items-center z-50"
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.8 }}
+    >
+      <h2 className="text-[#00D4FF] text-5xl font-bold text-shadow-lg mb-8 animate-pulse">
+        Zoro's Neon Dojo
+      </h2>
+      <button
+        className="border-2 border-[#FF00FF] text-[#FF00FF] px-8 py-3 text-xl hover:bg-[#FF00FF] hover:text-[#0D0D0D] transition animate-bounce"
+        onClick={onClose}
+      >
+        Back to Adventure
+      </button>
+      <button className="border-2 border-[#FF00FF] text-[#FF00FF] px-8 py-3 text-xl hover:bg-[#FF00FF] hover:text-[#0D0D0D] transition mt-4 animate-bounce">
+        Slice with Zoro
+      </button>
+      <button className="border-2 border-[#FF00FF] text-[#FF00FF] px-8 py-3 text-xl hover:bg-[#FF00FF] hover:text-[#0D0D0D] transition mt-4 animate-bounce">
+        Party with Swords
+      </button>
+    </motion.div>
+  );
+};
 
-const AnimatedScene = () => {
+const AnimatedScene: React.FC = () => {
   const circleRef = useRef<HTMLImageElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const mountRef = useRef<HTMLDivElement>(null);
+  const [searchParams] = useSearchParams();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const entity = {
+    name: decodeURIComponent(searchParams.get("name") || "Unknown Anime"),
+    description: decodeURIComponent(
+      searchParams.get("description") || "No description available."
+    ),
+    rating: parseFloat(searchParams.get("rating") || "0"),
+    tags:
+      searchParams
+        .get("tags")
+        ?.split(",")
+        .map((tag) => decodeURIComponent(tag)) || [],
+    date: decodeURIComponent(searchParams.get("date") || "Unknown date"),
+    background: decodeURIComponent(searchParams.get("background") || ""),
+    circle: decodeURIComponent(searchParams.get("circle") || ""),
+    action: {
+      label: decodeURIComponent(searchParams.get("actionLabel") || "Action"),
+      url: decodeURIComponent(searchParams.get("actionUrl") || "#"),
+    },
+  };
 
   useEffect(() => {
-    // Three.js сцена
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -53,7 +78,6 @@ const AnimatedScene = () => {
 
     camera.position.z = 5;
 
-    // Создаем вращающиеся звезды
     const starsGeometry = new THREE.BufferGeometry();
     const starsCount = 500;
 
@@ -61,7 +85,6 @@ const AnimatedScene = () => {
     const colors = new Float32Array(starsCount * 3);
 
     for (let i = 0; i < starsCount; i++) {
-      // Позиции в форме сферы
       const radius = 5;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
@@ -70,10 +93,9 @@ const AnimatedScene = () => {
       positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
       positions[i * 3 + 2] = radius * Math.cos(phi);
 
-      // Цвета (холодные оттенки)
-      colors[i * 3] = Math.random() * 0.5 + 0.5; // R (синий/голубой)
-      colors[i * 3 + 1] = Math.random() * 0.3 + 0.7; // G
-      colors[i * 3 + 2] = Math.random() * 0.2 + 0.8; // B
+      colors[i * 3] = Math.random() * 0.5 + 0.5;
+      colors[i * 3 + 1] = Math.random() * 0.3 + 0.7;
+      colors[i * 3 + 2] = Math.random() * 0.2 + 0.8;
     }
 
     starsGeometry.setAttribute(
@@ -93,35 +115,31 @@ const AnimatedScene = () => {
     const stars = new THREE.Points(starsGeometry, starsMaterial);
     scene.add(stars);
 
-    // Анимация звезд
     function animateStars() {
       stars.rotation.x += 0.001;
       stars.rotation.y += 0.002;
     }
 
-    // GSAP анимации для UI элементов
     gsap.fromTo(
-        circleRef.current,
-        { opacity: 0, x: 200, y: 200 },
-        {
-          opacity: 1,
-          x: 0,
-          y: 0,
-          duration: 1.5,
-          ease: "power2.out",
-          onComplete: () => {
-            // Плавное покачивание после входа
-            gsap.to(circleRef.current, {
-              y: "-=20",
-              duration: 2,
-              repeat: -1,
-              yoyo: true,
-              ease: "sine.inOut",
-            });
-          },
-        }
-      );
-      
+      circleRef.current,
+      { opacity: 0, x: 200, y: 200 },
+      {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        duration: 1.5,
+        ease: "power2.out",
+        onComplete: () => {
+          gsap.to(circleRef.current, {
+            y: "-=20",
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+          });
+        },
+      }
+    );
 
     gsap.fromTo(
       [textRef.current, buttonRef.current],
@@ -136,7 +154,6 @@ const AnimatedScene = () => {
       }
     );
 
-    // Рендер сцены
     function animate() {
       requestAnimationFrame(animate);
       animateStars();
@@ -144,7 +161,6 @@ const AnimatedScene = () => {
     }
     animate();
 
-    // Очистка
     return () => {
       mountRef.current?.removeChild(renderer.domElement);
       starsGeometry.dispose();
@@ -174,20 +190,28 @@ const AnimatedScene = () => {
     );
   };
 
-  const entity = entities[0];
-
   return (
     <div
       className="scene-container"
-      style={{ backgroundImage: `url(${entity.background})` }}
+      style={{
+        backgroundImage: entity.background
+          ? `url(${entity.background})`
+          : "none",
+      }}
     >
       <div ref={mountRef} className="three-container" />
-      <img
-        ref={circleRef}
-        src={entity.circle}
-        alt="Circle"
-        className="pink-circle"
-      />
+      {entity.circle && (
+        <img
+          ref={circleRef}
+          src={entity.circle}
+          alt="Circle"
+          className="pink-circle"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src =
+              "https://via.placeholder.com/300";
+          }}
+        />
+      )}
       <div className="info-container">
         <div ref={textRef} className="info-text">
           <h2>{entity.name}</h2>
@@ -205,14 +229,17 @@ const AnimatedScene = () => {
           </div>
           <p className="date">Published: {entity.date}</p>
         </div>
-        <button
-          ref={buttonRef}
-          className="action-button"
-          onClick={entity.action.onClick}
-        >
-          {entity.action.label}
-        </button>
+        <a href={entity.action.url} target="_blank" rel="noopener noreferrer">
+          <button
+            ref={buttonRef}
+            className="action-button"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            {entity.action.label}
+          </button>
+        </a>
       </div>
+      <Menu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </div>
   );
 };
