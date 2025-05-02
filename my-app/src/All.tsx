@@ -1,7 +1,7 @@
 import "./App.css";
 import Cards from "./Components/cards";
 import CyberFooter from "./Components/footer";
-import TechSphere from "./Components/map";
+// import TechGalaxy from "./Components/map";
 import CyberCarousel from "./Components/scrollBar";
 import CyberStats from "./Components/stats";
 import TechGrid from "./Components/teachGrid";
@@ -12,7 +12,7 @@ function All() {
       <CyberCarousel />
       <Cards />
       <CyberStats />
-      <TechSphere/>
+      {/* <TechGalaxy/> */}
       <TimeLine/>
       <TechGrid/>
       <CyberFooter />

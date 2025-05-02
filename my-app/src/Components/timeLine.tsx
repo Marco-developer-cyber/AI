@@ -30,7 +30,7 @@ const TimeLine: React.FC = () => {
       year: 2022,
       event: 'Запуск блокчейн-решений',
       details: 'Революционные децентрализованные платформы.',
-      image: 'https://sun9-81.userapi.com/c237131/u42036175/d44/-3/z_f3164ded90.jpg',
+      image: 'https://sun9-81.userapi.com/c237131/u42036175/d44/-3/z_f3164ded90.jpg+'
     },
     {
       year: 2023,
