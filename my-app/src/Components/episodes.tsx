@@ -10,8 +10,8 @@ const entities = [
     rating: 4.8,
     tags: ["Action", "Supernatural", "Dark Fantasy"],
     date: "March 23, 2017",
-    background: "./src/assets/Anime/Backgrounds/sukuna_t.png",
-    circle: "./src/assets/Anime/PNG/Sukuna_t-pothe.png",
+    background: "./public/Anime/Backgrounds/sukuna_t.png",
+    circle: "./public/Anime/PNG/Sukuna_t-pothe.png",
     action: {
       label: "Watch Now",
       onClick: () => window.open("https://jut.su/jujutsu-kaisen/", "_blank"),
