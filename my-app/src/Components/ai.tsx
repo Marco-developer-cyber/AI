@@ -33,7 +33,7 @@ const Info: Service[] = [
     name: "Grok-3",
     img: "https://id-media.apjonlinecdn.com/magefan_blog/xAI_Grook_32.jpg",
     info: "Продвинутая ИИ-модель от xAI с аналитическими возможностями", // 10 слов
-    link: "https://x.ai/grok",
+    link: "https://grok.com/?referrer=website",
   },
   {
     name: "Babadum",
@@ -45,7 +45,7 @@ const Info: Service[] = [
     name: "DeepSeek",
     img: "https://source.washu.edu/app/uploads/2025/02/deepresize1-1024x684.jpg",
     info: "Открытая платформа ИИ с мощными языковыми моделями",
-    link: "https://deepseek.ai",
+    link: "https://chat.deepseek.com/",
   },
   {
     name: "Midjourney",
