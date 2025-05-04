@@ -1,0 +1,63 @@
+/* .tech-earth-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(circle at center, #1a1a2e 0%, #0b0b1b 100%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-title {
+  font-family: 'Orbitron', sans-serif;
+  color: #00F5FF;
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px #00F5FF;
+  margin-bottom: 20px;
+  z-index: 10;
+}
+
+.earth-canvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.earth-canvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.tech-description {
+  position: absolute;
+  bottom: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  max-width: 300px;
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+  z-index: 10;
+}
+
+.tech-description h4 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+  color: #00F5FF;
+}
+
+.tech-description p {
+  margin: 0;
+  font-size: 1rem;
+  color: #ccc;
+} */

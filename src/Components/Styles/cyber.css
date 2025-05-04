@@ -1,0 +1,201 @@
+/* === Cyber Stats Section === */
+.cyber-stats-section {
+    background: rgba(10, 4, 16, 0.7);
+    padding: 4rem 0;
+    border-top: 1px solid rgba(0, 245, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .cyber-stats-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      linear-gradient(90deg, rgba(0,245,255,0.05) 1px, transparent 1px),
+      linear-gradient(rgba(0,245,255,0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.3;
+  }
+  
+  .cyber-stats-container {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .cyber-stat {
+    text-align: center;
+    padding: 1.5rem;
+    min-width: 200px;
+    position: relative;
+  }
+  
+  .stat-number {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #00F5FF;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 15px rgba(0, 245, 255, 0.5);
+  }
+  
+  .stat-label {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
+    color: #B8F2FF;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+  
+  .stat-line {
+    height: 2px;
+    width: 50px;
+    background: linear-gradient(90deg, #00F5FF, transparent);
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .stat-line::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: #00F5FF;
+    opacity: 0.3;
+    filter: blur(3px);
+  }
+  
+  /* === Tech Grid Section === */
+  .cyber-tech-section {
+    padding: 4rem 0;
+    background: rgba(20, 8, 32, 0.5);
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .title-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    color: #00F5FF;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    display: inline-block;
+    padding: 0 1rem;
+    background: linear-gradient(90deg, rgba(10,4,16,0) 0%, rgba(10,4,16,1) 20%, rgba(10,4,16,1) 80%, rgba(10,4,16,0) 100%);
+  }
+  
+  .title-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00F5FF, transparent);
+    z-index: -1;
+  }
+  
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  .tech-item {
+    position: relative;
+    border: 1px solid rgba(0, 245, 255, 0.2);
+    padding: 1.5rem;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    background: rgba(10, 4, 16, 0.5);
+  }
+  
+  .tech-item:hover {
+    transform: translateY(-5px);
+    border-color: #00F5FF;
+    box-shadow: 0 5px 20px rgba(0, 245, 255, 0.2);
+  }
+  
+  .tech-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    transition: all 0.4s ease;
+  }
+  
+  .tech-item:hover .tech-icon {
+    transform: scale(1.2);
+    text-shadow: 0 0 15px rgba(0, 245, 255, 0.7);
+  }
+  
+  .tech-name {
+    font-family: 'Orbitron', sans-serif;
+    color: #00F5FF;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+  }
+  
+  .tech-desc {
+    font-family: 'Rajdhani', sans-serif;
+    color: #B8F2FF;
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+  
+  .tech-hover-effect {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 245, 255, 0.1),
+      transparent
+    );
+    transition: 0.6s;
+  }
+  
+  .tech-item:hover .tech-hover-effect {
+    left: 100%;
+  }
+  
+  /* Адаптивность */
+  @media (max-width: 768px) {
+    .cyber-stats-container {
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+    }
+    
+    .tech-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .title-text {
+      font-size: 1.4rem;
+    }
+  }
