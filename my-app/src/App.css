@@ -1,0 +1,42 @@
+.scrollImage {
+    width: 100%;
+    height: 92vh;
+    object-fit: cover;
+}
+
+/* Part Footer,, */
+#footer {
+    height: 35vh;
+    background-color: black;
+}
+
+.footer-text {
+    position: relative;
+    top: 100px;
+}
+
+.example-2 {
+    position: relative;
+    top: 15vh;
+}
+
+/* End Footer,, */
+
+/* Part Card ,, */
+.card {
+    transition: 0.3s;
+    perspective: 1000px;
+    overflow: hidden;
+}
+.card img {
+    transition: 0.3s;
+}
+.card:hover {
+    box-shadow: 0 0 10px black;
+    transform: rotate(45deg,30deg,0deg);
+    scale: 1.02;
+}
+.card:hover img {
+    scale: 1.05;
+}
+/* End Card ,, */
