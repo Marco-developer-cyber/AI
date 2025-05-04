@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import './CyberpunkLoader.css';
+import './Styles/CyberpunkLoader.css';
 
 const CyberpunkLoader: React.FC = () => {
   return (
