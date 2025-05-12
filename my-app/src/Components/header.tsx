@@ -56,6 +56,14 @@ const Header = () => {
               <span className="link-text">Контакты</span>
               <span className="link-hover"></span>
             </Link>
+            <div className="auth-buttons">
+              <Link to="/login" className="cyber-auth-button login">
+                <span>LOG IN</span>
+              </Link>
+              <Link to="/signup" className="cyber-auth-button signup">
+                <span>SIGN UP</span>
+              </Link>
+            </div>
           </nav>
         </div>
       </div>

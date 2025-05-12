@@ -1,0 +1,374 @@
+/* Основа */
+.cyber-login-container {
+    position: relative;
+    background: rgba(10, 4, 16, 0.95);
+    border: 1px solid rgba(0, 245, 255, 0.2);
+    padding: 2rem;
+    max-width: 400px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* Глитч-эффект */
+.glitch-effect {
+    animation: glitch 0.5s linear infinite;
+}
+
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        transform: translate(-2px, -2px);
+    }
+
+    60% {
+        transform: translate(2px, 2px);
+    }
+
+    80% {
+        transform: translate(2px, -2px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* Заголовок */
+.cyber-login-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    color: #00F5FF;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.cyber-text {
+    position: relative;
+    display: inline-block;
+}
+
+.cyber-text::before,
+.cyber-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.cyber-text::before {
+    color: #C9184A;
+    z-index: -1;
+    animation: glitch-effect 3s infinite;
+}
+
+.cyber-text::after {
+    color: #B8F2FF;
+    z-index: -2;
+    animation: glitch-effect 2s infinite reverse;
+}
+
+/* Поля ввода */
+.cyber-input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.cyber-input {
+    width: 100%;
+    padding: 0.8rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(0, 245, 255, 0.3);
+    color: #00F5FF;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    outline: none;
+}
+
+.cyber-input::placeholder {
+    color: rgba(0, 245, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cyber-input-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #00F5FF;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.cyber-input:focus~.cyber-input-underline {
+    transform: scaleX(1);
+}
+
+/* Кнопка */
+.cyber-login-button {
+    position: relative;
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 1rem;
+    background: rgba(0, 245, 255, 0.1);
+    border: 1px solid #00F5FF;
+    color: #00F5FF;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.cyber-login-button:hover {
+    background: rgba(0, 245, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 245, 255, 0.4);
+}
+
+.cyber-btn-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center,
+            rgba(0, 245, 255, 0.4) 0%,
+            transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.cyber-login-button:hover .cyber-btn-pulse {
+    opacity: 0.6;
+}
+
+/* Ссылки */
+.cyber-login-links {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cyber-link {
+    color: rgba(0, 245, 255, 0.7);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.cyber-link:hover {
+    color: #00F5FF;
+    text-shadow: 0 0 5px rgba(0, 245, 255, 0.5);
+}
+
+/* Сканирующая линия */
+.cyber-scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00F5FF, transparent);
+    animation: scanline 3s linear infinite;
+}
+
+@keyframes scanline {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+/* === OAuth-кнопки === */
+.cyber-oauth-buttons {
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.cyber-oauth-button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    border: none;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cyber-oauth-button.google {
+    background: rgba(219, 68, 55, 0.1);
+    color: #DB4437;
+    border: 1px solid rgba(219, 68, 55, 0.3);
+}
+
+.cyber-oauth-button.github {
+    background: rgba(24, 23, 23, 0.1);
+    color: #f5f5f5;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cyber-oauth-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.cyber-oauth-button.google:hover {
+    background: rgba(219, 68, 55, 0.2);
+    box-shadow: 0 0 15px rgba(219, 68, 55, 0.4);
+}
+
+.cyber-oauth-button.github:hover {
+    background: rgba(24, 23, 23, 0.2);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.oauth-icon {
+    font-size: 1.2rem;
+}
+
+/* === Разделитель === */
+.cyber-divider {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.cyber-divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00F5FF, transparent);
+}
+
+.cyber-divider-text {
+    padding: 0 1rem;
+    color: #00F5FF;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    text-shadow: 0 0 5px #00F5FF;
+}
+
+/* === Улучшенные ссылки === */
+.cyber-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(0, 245, 255, 0.7);
+    padding: 0.5rem 0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.cyber-link:hover {
+    color: #00F5FF;
+}
+
+.link-arrow {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.cyber-link:hover .link-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* === Грид-оверлей (доп. кибер-эффект) === */
+.cyber-grid-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Поле пароля */
+.cyber-password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cyber-password-toggle {
+    position: absolute;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: rgba(0, 245, 255, 0.7);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cyber-password-toggle:hover {
+    color: #00F5FF;
+    transform: scale(1.1);
+}
+
+/* Блок ошибок */
+.cyber-error {
+    margin: 1rem 0;
+    padding: 0.5rem;
+    background: rgba(201, 24, 74, 0.2);
+    border-left: 3px solid #C9184A;
+    color: #ff4d6d;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    animation: error-shake 0.4s ease;
+}
+
+@keyframes error-shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-5px);
+    }
+
+    40% {
+        transform: translateX(5px);
+    }
+
+    60% {
+        transform: translateX(-5px);
+    }
+
+    80% {
+        transform: translateX(5px);
+    }
+}

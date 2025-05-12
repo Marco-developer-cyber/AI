@@ -6,7 +6,7 @@
     width: 100%;
     z-index: 1000;
     background: rgba(10, 4, 16, 0.8);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);   
     padding: 1rem 0;
     transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     border-bottom: 1px solid rgba(0, 245, 255, 0.1);
@@ -190,3 +190,131 @@
       right: 0;
     }
   }
+  .auth-buttons {
+    display: flex;
+    gap: 0.8rem;
+    margin-left: 1.5rem;
+  }
+  
+  .cyber-auth-button {
+    position: relative;
+    padding: 0.5rem 1.2rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #00F5FF;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
+  
+  .cyber-auth-button.signup {
+    color: #C9184A;
+  }
+  
+  .cyber-auth-button span {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Неоновое подчеркивание */
+  
+  .cyber-auth-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #00F5FF;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  
+  .cyber-auth-button.signup::after {
+    background: #C9184A;
+  }
+  
+  /* Эффект наведения */
+  .cyber-auth-button:hover {
+    text-shadow: 0 0 8px currentColor;
+  }
+  
+  .cyber-auth-button:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  
+  /* Адаптив */
+  @media (max-width: 768px) {
+    .auth-buttons {
+      margin-left: 0;
+      gap: 0.5rem;
+    }
+    
+    .cyber-auth-button {
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+    }
+  }
+  .cyber-auth-button:active::before {
+    animation: glitch-scan 0.3s linear;
+    opacity: 1;
+    background-size: 100% 100%;
+  }
+  .cyber-auth-button:hover {
+    text-shadow: 
+      0 0 8px currentColor,
+      0 0 16px rgba(0, 245, 255, 0.4);
+  }
+  
+  .cyber-auth-button.signup:hover {
+    text-shadow: 
+      0 0 8px #C9184A,
+      0 0 16px rgba(201, 24, 74, 0.4);
+  }
+  /* Основной глитч */
+.cyber-auth-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 45%,
+    rgba(0, 245, 255, 0.15) 50%,
+    transparent 55%
+  );
+  background-size: 200% 100%;
+  animation: glitch-scan 2.5s linear infinite;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+@keyframes glitch-scan {
+  0% { background-position: -100% 0; }
+  100% { background-position: 100% 0; }
+}
+
+.cyber-auth-button:hover::before {
+  opacity: 0.9;
+}
+
+/* Усиление эффекта при клике */
+.cyber-auth-button:active::before {
+  animation: glitch-scan 0.5s linear;
+  background: linear-gradient(
+    90deg,
+    transparent 40%,
+    rgba(0, 245, 255, 0.3) 50%,
+    transparent 60%
+  );
+}

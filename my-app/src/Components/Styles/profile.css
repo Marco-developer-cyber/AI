@@ -1,0 +1,133 @@
+/* Base styles */
+.profile-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(20, 20, 30, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.1);
+  }
+  
+  .loading-screen,
+  .not-authorized {
+    text-align: center;
+    padding: 2rem;
+    color: #fff;
+  }
+  
+  .not-authorized a {
+    color: #00F5FF;
+    text-decoration: none;
+  }
+  
+  .not-authorized a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Header */
+  .profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .profile-header h1 {
+    color: #00F5FF;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 2px;
+  }
+  
+  /* Avatar section */
+  .avatar-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  
+  .avatar-wrapper {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #00F5FF;
+    padding: 5px;
+    position: relative;
+  }
+  
+  .user-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  /* User details */
+  .user-details {
+    background: rgba(30, 30, 45, 0.6);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+  
+  .detail-row {
+    display: flex;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 245, 255, 0.2);
+  }
+  
+  .detail-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  
+  .detail-label {
+    width: 120px;
+    color: #00F5FF;
+    font-weight: bold;
+  }
+  
+  .detail-value {
+    flex: 1;
+    color: #fff;
+  }
+  
+  .uid {
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: #C9184A;
+    word-break: break-all;
+  }
+  
+  /* Actions */
+  .profile-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .edit-button {
+    background: rgba(0, 245, 255, 0.1);
+    color: #00F5FF;
+    border: 1px solid #00F5FF;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .edit-button:hover {
+    background: rgba(0, 245, 255, 0.2);
+  }
+  
+  .logout-link {
+    color: #C9184A;
+    border: 1px solid #C9184A;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .logout-link:hover {
+    background: rgba(201, 24, 74, 0.1);
+  }

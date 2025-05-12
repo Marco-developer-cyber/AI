@@ -59,7 +59,7 @@ const Cards = () => {
                             <p className="cyber-text">
                                 Unleash the power of quantum computing in your projects.
                             </p>
-                            <Link to="/" className="cyber-link">
+                            <Link to="/ai-chat" className="cyber-link">
                                 <button className="cyber-btn">Activate</button>
                             </Link>
                         </div>
