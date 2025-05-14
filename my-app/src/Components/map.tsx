@@ -4,6 +4,7 @@
 // import gsap from 'gsap';
 // import './Styles/map.css';
 
+
 // // Интерфейс для технологии
 // interface Technology {
 //   id: number;

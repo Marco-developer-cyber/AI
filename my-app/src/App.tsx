@@ -10,6 +10,7 @@ import LoginForm from './Components/LoginForm';
 import Profile from './Components/Profile';
 import CyberpunkLoader from './Components/CyberpunkLoader';
 import AnimeAIChat from './Components/AI-Page/AnimeAIChat';
+import AboutPage from './Components/About';
 
 function AppContent() {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,6 +37,7 @@ function AppContent() {
         <Route path="/anime" element={<Anime />} />
         <Route path="/animatedScenes" element={<AnimatedScene />} />
         <Route path="/logIn" element={<LoginForm />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/ai-chat" element={<AnimeAIChat />} />
         <Route path="/repositories" element={<div className="placeholder-page"><h2>Your Repositories</h2><p>This page will display your repositories.</p></div>} />

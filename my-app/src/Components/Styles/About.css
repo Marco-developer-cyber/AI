@@ -1,0 +1,140 @@
+/* 🌌 Основные стили */
+.abt-cyber-about-page {
+    background: #0a0410;
+    color: #B8F2FF;
+    min-height: 100vh;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Rajdhani', sans-serif;
+  }
+  
+  /* 💥 Глитч-эффект для заголовка */
+  .abt-cyber-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 5rem;
+    text-align: center;
+    color: #00F5FF;
+    text-shadow: 0 0 10px #00F5FF;
+    position: relative;
+    margin-bottom: 3rem;
+  }
+  
+  .abt-cyber-title.abt-glitch {
+    animation: abt-glitch 0.3s linear infinite;
+  }
+  
+  @keyframes abt-glitch {
+    0% { text-shadow: 3px 0 #C9184A, -3px 0 #00F5FF; }
+    25% { text-shadow: -3px 0 #C9184A, 3px 0 #00F5FF; }
+    50% { text-shadow: 3px 0 #00F5FF, -3px 0 #C9184A; }
+    100% { text-shadow: -3px 0 #00F5FF, 3px 0 #C9184A; }
+  }
+  
+  /* 🌀 Анимированный фон (частицы) */
+  .abt-particle-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(0, 245, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(201, 24, 74, 0.1) 0%, transparent 50%);
+    z-index: -1;
+  }
+  
+  /* 💾 Стили карточек */
+  .abt-cyber-card {
+    background: rgba(10, 4, 16, 0.7);
+    border: 1px solid #00F5FF;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .abt-cyber-card:hover {
+    box-shadow: 0 0 30px rgba(0, 245, 255, 0.4);
+    transform: translateY(-5px);
+  }
+  
+  .abt-neon-subtitle {
+    color: #00F5FF;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .abt-highlight {
+    color: #C9184A;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(201, 24, 74, 0.5);
+  }
+  
+  /* ⚡ Сетка технологий */
+  .abt-tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  
+  .abt-tech-item {
+    background: rgba(0, 245, 255, 0.1);
+    border: 1px solid #00F5FF;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .abt-tech-item:hover {
+    background: rgba(0, 245, 255, 0.3);
+    box-shadow: 0 0 15px #00F5FF;
+  }
+  
+  /* 🎮 3D-куб (можно заменить настоящим Three.js) */
+  .abt-cyber-cube {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    margin: 3rem auto;
+    transform-style: preserve-3d;
+  }
+  
+  .abt-cube-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #00F5FF;
+    opacity: 0.8;
+  }
+  
+  .abt-cube-face.front { transform: translateZ(75px); background: rgba(0, 245, 255, 0.2); }
+  .abt-cube-face.back { transform: rotateY(180deg) translateZ(75px); background: rgba(201, 24, 74, 0.2); }
+  .abt-cube-face.left { transform: rotateY(-90deg) translateZ(75px); background: rgba(0, 245, 255, 0.1); }
+  .abt-cube-face.right { transform: rotateY(90deg) translateZ(75px); background: rgba(201, 24, 74, 0.1); }
+  .abt-cube-face.top { transform: rotateX(90deg) translateZ(75px); background: rgba(0, 245, 255, 0.15); }
+  .abt-cube-face.bottom { transform: rotateX(-90deg) translateZ(75px); background: rgba(201, 24, 74, 0.15); }
+  
+  /* 🔮 Футер с scanline-эффектом */
+  .abt-cyber-footer {
+    text-align: center;
+    margin-top: 4rem;
+    position: relative;
+  }
+  
+  .abt-scanline {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #00F5FF, transparent);
+    animation: abt-scan 3s linear infinite;
+    margin-top: 1rem;
+  }
+  
+  @keyframes abt-scan {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
