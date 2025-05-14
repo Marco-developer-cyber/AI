@@ -5,7 +5,7 @@ import './Styles/timeLine.css'
 interface Milestone {
   year: number;
   event: string;
-  details?: string;
+  details?: string;  
   image?: string;
 }
 

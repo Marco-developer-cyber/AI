@@ -1,20 +1,22 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import axios from 'axios';
+// import axios from 'axios';
+import { FiSend, FiImage, FiX } from 'react-icons/fi';
 
 interface Message {
   text: string;
   isUser: boolean;
 }
 
+// Анимации
 const neonGlow = keyframes`
-  0%, 100% { text-shadow: 0 0 5px #00F5FF, 0 0 10px #00F5FF, 0 0 20px #00F5FF; }
-  50% { text-shadow: 0 0 10px #00F5FF, 0 0 20px #00F5FF, 0 0 30px #00F5FF, 0 0 40px #C9184A; }
+  0%, 100% { text-shadow: 0 0 5px #00F5FF, 0 0 10px #00F5FF; }
+  50% { text-shadow: 0 0 10px #00F5FF, 0 0 20px #00F5FF, 0 0 30px #C9184A; }
 `;
 
 const pulse = keyframes`
-  0%, 100% { opacity: 0.8; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
 `;
 
 const scan = keyframes`
@@ -36,9 +38,10 @@ const float = keyframes`
   50% { transform: translateY(-10px); }
 `;
 
+// Стилизованные компоненты
 const CyberContainer = styled.div`
   max-width: 900px;
-  margin: 2rem auto;
+  margin: 100px auto 20px;
   padding: 2rem;
   background: rgba(10, 10, 20, 0.9);
   border-radius: 15px;
@@ -47,8 +50,9 @@ const CyberContainer = styled.div`
   font-family: 'Rajdhani', 'Courier New', sans-serif;
   position: relative;
   overflow: hidden;
+
   @media (max-width: 600px) {
-    margin: 1rem;
+    margin: 80px 1rem 1rem;
     padding: 1rem;
   }
 `;
@@ -88,6 +92,10 @@ const CyberTitle = styled.h1`
     color: #00F5FF;
     z-index: -2;
     animation: ${glitch} 3s infinite alternate;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 1.8rem;
   }
 `;
 
@@ -166,6 +174,7 @@ const MessageBubble = styled.div<{ isUser: boolean }>`
   border: ${({ isUser }) => (isUser ? '1px solid rgba(201,24,74,0.5)' : '1px solid rgba(0,245,255,0.5)')};
   box-shadow: ${({ isUser }) => (isUser ? '0 0 15px rgba(201,24,74,0.3)' : '0 0 15px rgba(0,245,255,0.3)')};
   backdrop-filter: blur(5px);
+  color: white;
 
   &::before {
     content: '';
@@ -247,6 +256,9 @@ const CyberButton = styled.button`
   box-shadow: 0 0 15px rgba(0, 245, 255, 0.2);
   text-transform: uppercase;
   letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
   &:hover {
     transform: translateY(-3px);
@@ -377,69 +389,83 @@ const StatusItem = styled.div`
 `;
 
 const AnimeAIChat: React.FC = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>(() => {
+    const saved = localStorage.getItem('anime-ai-messages');
+    return saved ? JSON.parse(saved) : [{
+      text: '👋 Привет, Зорро! Я NEONIME.AI — твой киберпанк-помощник по аниме. Задавай вопросы или загружай скриншот для поиска аниме! 😎',
+      isUser: false,
+    }];
+  });
+  
   const [inputValue, setInputValue] = useState('');
   const [image, setImage] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const handleSendMessage = async () => {
-    if (!inputValue.trim()) return;
-
-    const userMessage: Message = { text: inputValue, isUser: true };
-    setMessages((prev) => [...prev, userMessage]);
-    setInputValue('');
-
-    try {
-      const response = await axios.post('http://localhost:5000/chat', { message: inputValue }, { headers: { 'Content-Type': 'application/json' } });
-      const aiMessage: Message = { text: response.data.reply, isUser: false };
-      setMessages((prev) => [...prev, aiMessage]);
-    } catch (error) {
-      setMessages((prev) => [...prev, { text: '⚠️ Ошибка связи с AI. Попробуйте позже!', isUser: false }]);
-    }
-  };
-
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files || !e.target.files[0]) return;
-
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onload = async (event) => {
-      const imageData = event.target?.result as string;
-      setImage(imageData);
-      setIsAnalyzing(true);
-
-      try {
-        const response = await axios.post('http://localhost:5000/chat', { image: imageData }, { headers: { 'Content-Type': 'application/json' } });
-        const aiMessage: Message = { text: response.data.reply, isUser: false };
-        setMessages((prev) => [...prev, aiMessage]);
-      } catch (error) {
-        setMessages((prev) => [
-          ...prev,
-          { text: '⚠️ Не удалось распознать аниме. Попробуйте другой скриншот!', isUser: false },
-        ]);
-      } finally {
-        setIsAnalyzing(false);
-      }
-    };
-    reader.readAsDataURL(file);
-  };
-
+  // Сохраняем сообщения в localStorage
   useEffect(() => {
-    setMessages([
-      {
-        text: '👋 Привет, Зорро! Я NEONIME.AI — твой киберпанк-помощник по аниме. Задавай вопросы или загружай скриншот для поиска аниме! 😎',
-        isUser: false,
-      },
-    ]);
-  }, []);
+    localStorage.setItem('anime-ai-messages', JSON.stringify(messages));
+  }, [messages]);
 
+  // Прокрутка к последнему сообщению
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
+  const handleSendMessage = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    if (!inputValue.trim() && !image) return;
+
+    // Добавляем сообщение пользователя
+    const newMessages = [...messages];
+    if (inputValue.trim()) {
+      newMessages.push({ text: inputValue, isUser: true });
+    }
+    
+    setMessages(newMessages);
+    setInputValue('');
+    setIsAnalyzing(true);
+
+    try {
+      // Имитация запроса к API
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // Добавляем ответ бота
+      setMessages(prev => [...prev, {
+        text: image 
+          ? '🔍 Похоже, это "Наруто: Ураганные хроники". Хотите узнать больше об этом аниме?'
+          : 'Я могу помочь вам с информацией о любом аниме. Уточните ваш запрос для более точного ответа.',
+        isUser: false
+      }]);
+      
+      // Сбрасываем изображение после отправки
+      setImage(null);
+    } catch (error) {
+      setMessages(prev => [...prev, {
+        text: '⚠️ Ошибка связи с AI. Попробуйте позже!',
+        isUser: false
+      }]);
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || !e.target.files[0]) return;
+
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    
+    reader.onload = (event) => {
+      const imageData = event.target?.result as string;
+      setImage(imageData);
+    };
+    
+    reader.readAsDataURL(file);
+  };
+
   return (
-    <CyberContainer className='mt-5' style={{marginTop:'50px'}}>
+    <CyberContainer>
       <CyberHeader>
         <CyberTitle>ANIME.AI</CyberTitle>
         <CyberSubtitle>Киберпанк аниме детектив v3.1.4</CyberSubtitle>
@@ -463,7 +489,7 @@ const AnimeAIChat: React.FC = () => {
             <MessageContainer isUser={false}>
               <AnalyzingBubble>
                 <ScanningAnimation />
-                Анализирую изображение...
+                Анализирую {image ? 'изображение' : 'запрос'}...
               </AnalyzingBubble>
             </MessageContainer>
           )}
@@ -476,26 +502,33 @@ const AnimeAIChat: React.FC = () => {
         {image && (
           <ImagePreviewContainer>
             <PreviewImage src={image} alt="Uploaded preview" />
-            <RemoveImageButton onClick={() => setImage(null)}>×</RemoveImageButton>
+            <RemoveImageButton onClick={() => setImage(null)}>
+              <FiX />
+            </RemoveImageButton>
           </ImagePreviewContainer>
         )}
 
-        <InputGroup>
-          <ImageUploadButton>
-            📸 Загрузить скриншот
-            <input type="file" accept="image/*" onChange={handleImageUpload} hidden />
-          </ImageUploadButton>
+        <form onSubmit={handleSendMessage}>
+          <InputGroup>
+            <ImageUploadButton>
+              <FiImage />
+              Загрузить скриншот
+              <input type="file" accept="image/*" onChange={handleImageUpload} hidden />
+            </ImageUploadButton>
 
-          <CyberInput
-            type="text"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-            placeholder="Спроси о любом аниме..."
-          />
+            <CyberInput
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="Спроси о любом аниме..."
+            />
 
-          <CyberButton onClick={handleSendMessage}>Отправить</CyberButton>
-        </InputGroup>
+            <CyberButton type="submit">
+              <FiSend />
+              Отправить
+            </CyberButton>
+          </InputGroup>
+        </form>
       </InputArea>
 
       <CyberFooter>

@@ -40,3 +40,21 @@
     scale: 1.05;
 }
 /* End Card ,, */
+
+.placeholder-page {
+    padding: 40px;
+    text-align: center;
+    color: #00ffcc;
+    background: #1a1a1a;
+    min-height: 100vh;
+  }
+  
+  .placeholder-page h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .placeholder-page p {
+    font-size: 16px;
+    opacity: 0.8;
+  }

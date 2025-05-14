@@ -9,7 +9,7 @@ const Profile = () => {
   const [photoURL, setPhotoURL] = useState('https://cdn-icons-png.flaticon.com/512/3135/3135715.png');
   const [loading, setLoading] = useState(true);
   const auth = getAuth();
-
+   
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setLoading(false);

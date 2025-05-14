@@ -12,14 +12,14 @@ import CyberpunkLoader from './Components/CyberpunkLoader';
 import AnimeAIChat from './Components/AI-Page/AnimeAIChat';
 
 function AppContent() {
-  const [isLoading, setIsLoading] = useState(true); // Начинаем с true, чтобы лоадер показался сразу
+  const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
     setIsLoading(true);
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // Симуляция загрузки на 2 секунды
+    }, 2000);
     return () => clearTimeout(timer);
   }, [location]);
 
@@ -35,10 +35,12 @@ function AppContent() {
         <Route path="/ai" element={<Ai />} />
         <Route path="/anime" element={<Anime />} />
         <Route path="/animatedScenes" element={<AnimatedScene />} />
-        <Route path='/logIn' element={<LoginForm/>}/>
-        <Route path='/profile' element={<Profile/>}/>
-        <Route path='/ai-chat' element={<AnimeAIChat/>}/>
-        
+        <Route path="/logIn" element={<LoginForm />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/ai-chat" element={<AnimeAIChat />} />
+        <Route path="/repositories" element={<div className="placeholder-page"><h2>Your Repositories</h2><p>This page will display your repositories.</p></div>} />
+        <Route path="/stars" element={<div className="placeholder-page"><h2>Your Stars</h2><p>This page will display your starred items.</p></div>} />
+        <Route path="/gists" element={<div className="placeholder-page"><h2>Your Gists</h2><p>This page will display your gists.</p></div>} />
       </Routes>
     </>
   );

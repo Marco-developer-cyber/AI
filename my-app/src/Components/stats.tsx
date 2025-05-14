@@ -1,28 +1,41 @@
 import { useEffect, useRef } from 'react';
-import './Styles/cyber.css'
+import './Styles/cyber.css';
+
 const CyberStats = () => {
   const statRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const animationRefs = useRef<number[]>([]);
 
   useEffect(() => {
-    // RESET ref array to avoid stale entries across rerenders
-    statRefs.current = [];
+    // Очистка предыдущих анимаций при размонтировании
+    return () => {
+      animationRefs.current.forEach(cancelAnimationFrame);
+      animationRefs.current = [];
+    };
+  }, []);
 
+  useEffect(() => {
     const animateCounter = (el: HTMLDivElement, target: number) => {
       const duration = 2000;
-      const increment = target / (duration / 16);
-      let current = 0;
-
-      const update = () => {
-        current += increment;
-        if (current < target) {
-          el.textContent = Math.floor(current).toString();
-          requestAnimationFrame(update);
+      const startTime = performance.now();
+      // const startValue = 0;
+      
+      const animate = (currentTime: number) => {
+        const elapsedTime = currentTime - startTime;
+        const progress = Math.min(elapsedTime / duration, 1);
+        const currentValue = Math.floor(progress * target);
+        
+        el.textContent = currentValue.toString();
+        
+        if (progress < 1) {
+          const requestId = requestAnimationFrame(animate);
+          animationRefs.current.push(requestId);
         } else {
           el.textContent = target.toString();
         }
       };
-
-      update();
+      
+      const requestId = requestAnimationFrame(animate);
+      animationRefs.current.push(requestId);
     };
 
     const observer = new IntersectionObserver(
@@ -35,7 +48,10 @@ const CyberStats = () => {
           }
         });
       },
-      { threshold: 0.5 }
+      { 
+        threshold: 0.5,
+        rootMargin: '0px 0px -50px 0px' // Запускает анимацию немного раньше
+      }
     );
 
     statRefs.current.forEach((el) => {
@@ -44,6 +60,8 @@ const CyberStats = () => {
 
     return () => {
       observer.disconnect();
+      animationRefs.current.forEach(cancelAnimationFrame);
+      animationRefs.current = [];
     };
   }, []);
 

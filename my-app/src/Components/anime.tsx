@@ -233,7 +233,7 @@ const Anime: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen p-6 bg-[#0D0D0D]">
+    <div className="mt-5 min-h-screen p-6 bg-[#0D0D0D]">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {cards.map((card, index) => {
           const queryParams = new URLSearchParams({
